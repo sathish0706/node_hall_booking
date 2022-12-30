@@ -16,7 +16,7 @@ let halls = [
       hall_name: "Rajaji Hall",
       hall_id: 1,
       seats: 250,
-      specification: "wifi,ambel swivel seat,AC,projector",
+      amenities: "wifi,ambel swivel seat,AC,projector",
       price_per_hour: 5000,
       start_time: '05:00',
       end_time: '09:00'
@@ -25,7 +25,7 @@ let halls = [
       hall_name: "Famous Mini Hall",
       hall_id: 2,
       seats: 200,
-      specification: "projector,AC,",
+      amenities: "projector,AC,",
       price_per_hour: 2000,
       start_time: '10:00',
       end_time: '11:00',
@@ -67,7 +67,7 @@ let halls = [
       hall_name: req.body.hall_name,
       hall_id: req.body.hall_id,
       seats: req.body.seats,
-      specification: req.body.amenities,
+      amenities: req.body.amenities,
       price_per_day: req.body.price_per_day,
     });
     res.status(201).send(`The id ${id} with hall is created successfully`);
