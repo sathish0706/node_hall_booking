@@ -60,7 +60,7 @@ let halls = [
   });
  
   
-  app.post('/hall/create', (req, res) => {
+  app.post('/hallcreate', (req, res) => {
     let id = halls.length + 1;
     req.body.hall_id = id;
     halls.push({
