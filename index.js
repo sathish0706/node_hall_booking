@@ -17,14 +17,19 @@ let halls = [
       hall_id: 1,
       seats: 250,
       specification: "wifi,ambel swivel seat,AC,projector",
-      price_per_day: 50000,
+      price_per_hour: 5000,
+      start_time: '05:00',
+      end_time: '09:00'
     },
     {
       hall_name: "Famous Mini Hall",
       hall_id: 2,
       seats: 200,
       specification: "projector,AC,",
-      price_per_day: 20000,
+      price_per_hour: 2000,
+      start_time: '10:00',
+      end_time: '11:00',
+
     },
   ];
   
@@ -80,12 +85,31 @@ let halls = [
         booked_hall_id: req.body.booked_hall_id,
         hall_name: req.body.hall_name,
         date: req.body.date,
-        status: 'booked',
-      };
-      res.status(201).send({message: "hall booked successfully"})
+        booked_room_id:req.body.booked_room_id,
+        start_time: req.body.start_time,
+        end_time: req.body.end_time,
+        // status: 'booked',
+      }
+      for (const book of bookingDetails) {
+        if (book.date.getTime() == req.body.date.getTime() && book.start_time === req.body.start_time) {
+          console.log(book.date.getTime(), req.body.date.getTime());
+         
+          return res
+            .status(400)
+            .send({ error: 'The room is not available with this time slot' });
+        } else {
+          result = 1;
+          bookingDetails.push(booking_detail);
+          return res
+            .status(201)
+            .send(
+              `Room is successfully booked with the id ${req.body.booked_room_id}`
+            );
+        }
+      }
     } catch (error) {
       console.log(error);
-      res.status(400).send('internal error');
+      res.status(400).send({message:'internal error'});
     }
   });
   
